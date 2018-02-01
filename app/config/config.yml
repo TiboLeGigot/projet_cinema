@@ -94,3 +94,13 @@ fos_user:
     from_email:
         address:     "noreply@yourapp.com"
         sender_name: "Test"
+
+# Assetic configuration
+assetic:
+    debug:          '%kernel.debug%'
+    use_controller: '%kernel.debug%'
+    filters:
+      cssrewrite: ~
+      jsqueeze:   ~
+      scssphp:
+        formatter: 'Leafo\ScssPhp\Formatter\Compressed'
