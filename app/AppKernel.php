@@ -17,7 +17,7 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
-            new BG\PlatformBundle\BGPlatformBundle(),
+            new BG\CinemaBundle\BGCinemaBundle(),
             new BG\CoreBundle\BGCoreBundle(),
             new BG\UserBundle\BGUserBundle(),
             new FOS\UserBundle\FOSUserBundle()
