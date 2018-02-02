@@ -1,0 +1,9 @@
+<ul class="nav nav-pills nav-stacked">
+  {% for film in listFilms %}
+    <li>
+      <a href="{{ path('bg_cinema_view', {'film_id': film.id}) }}">
+        {{ film.title }}
+      </a>
+    </li>
+  {% endfor %}
+</ul>

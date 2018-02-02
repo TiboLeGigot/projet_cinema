@@ -1,0 +1,40 @@
+bg_cinema_home:
+    path:      /{page}
+    defaults:
+        _controller: BGCinemaBundle:Film:index
+        page:        1
+    requirements:
+        page: \d*
+
+bg_cinema_view:
+    path:      /film/{film_id}
+    defaults:
+        _controller: BGCinemaBundle:Film:view
+    requirements:
+        id: \d+
+
+bg_cinema_add:
+    path:      /add
+    defaults:
+        _controller: BGCinemaBundle:Film:add
+
+bg_cinema_edit:
+    path:      /edit/{id}
+    defaults:
+        _controller: BGCinemaBundle:Film:edit
+    requirements:
+        id: \d+
+
+bg_cinema_delete:
+    path:      /delete/{id}
+    defaults:
+        _controller: BGCinemaBundle:Film:delete
+    requirements:
+        id: \d+
+
+bg_cinema_purge:
+    path:     /purge/{days}
+    defaults:
+        _controller: BGCinemaBundle:Film:purge
+    requirements:
+        days: \d+

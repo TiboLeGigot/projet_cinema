@@ -14,9 +14,9 @@
     <div class="alert alert-info">Message flash : {{ message }}</div>
   {% endfor %}
 
-  {# Pour afficher les dernières annonces, on réutilise le contrôleur menu du PlatformBundle #}
+  {# Pour afficher les dernières annonces, on réutilise le contrôleur menu du CinemaBundle #}
   <h3>Dernières annonces</h3>
-  {{ render(controller("BGPlatformBundle:Advert:menu", {'limit': 3})) }}
+  {{ render(controller("BGCinemaBundle:Film:menu", {'limit': 3})) }}
 
   <h3>Derniers messages sur le forum (hypothétique)</h3>
   <p>
