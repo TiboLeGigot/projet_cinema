@@ -1,0 +1,34 @@
+{% extends "BGCinemaBundle::layout.html.twig" %}
+
+{% block title %}
+  Accueil - {{ parent() }}
+{% endblock %}
+
+{% block bgcinema_body %}
+
+  <h2>Liste des films</h2>
+
+  <ul>
+    {% for film in listFilms %}
+      <li>
+        <a href="{{ path('bg_cinema_view', {'film_id': film.id}) }}">
+          {{ film.title }}
+        </a>
+        par {{ film.author }},
+        le {{ film.date|date('d/m/Y') }}
+      </li>
+    {% else %}
+      <li>Pas (encore !) d'annonces</li>
+    {% endfor %}
+  </ul>
+
+  <ul class="pagination">
+    {# On utilise la fonction range(a, b) qui crée un tableau de valeurs entre a et b #}
+    {% for p in range(1, nbPages) %}
+      <li{% if p == page %} class="active"{% endif %}>
+        <a href="{{ path('bg_cinema_home', {'page': p}) }}">{{ p }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+
+{% endblock %}

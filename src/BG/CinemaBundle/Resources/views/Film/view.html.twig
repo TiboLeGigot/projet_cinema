@@ -1,0 +1,62 @@
+{% extends "BGCinemaBundle::layout.html.twig" %}
+
+{% block title %}
+  Lecture d'une annonce - {{ parent() }}
+{% endblock %}
+
+{% block bgcinema_body %}
+
+  <div style="float: left; margin-right: 1em;">
+    {# On vérifie qu'une image soit bien associée à l'article #}
+    {% if film.image is not null %}
+      <img
+        src="{{ asset(film.image.webPath) }}"
+        alt="{{ film.image.alt }}"
+        height="60"
+      />
+    {% endif %}
+  </div>
+
+  <h2>{{ film.title }}</h2>
+  <i>Par {{ film.author }}, le {{ film.date|date('d/m/Y') }}</i>
+
+  <div class="well">
+    {{ film.content }}
+  </div>
+
+  {% if not film.categories.empty %}
+    <p>
+      Cette annonce est parue dans les catégories suivantes :
+      {% for category in film.categories %}
+        {{ category.name }}{% if not loop.last %}, {% endif %}
+      {% endfor %}
+    </p>
+  {% endif %}
+
+  {% if listFilmSkills|length > 0 %}
+    <div>
+      Cette annonce requiert les compétences suivantes :
+      <ul>
+        {% for filmSkill in listFilmSkills %}
+          <li>{{ filmSkill.skill.name }} : niveau {{ filmSkill.level }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+  {% endif %}
+
+  <p>
+    <a href="{{ path('bg_cinema_home') }}" class="btn btn-default">
+      <i class="glyphicon glyphicon-chevron-left"></i>
+      Retour à la liste
+    </a>
+    <a href="{{ path('bg_cinema_edit', {'id': film.id}) }}" class="btn btn-default">
+      <i class="glyphicon glyphicon-edit"></i>
+      Modifier l'annonce
+    </a>
+    <a href="{{ path('bg_cinema_delete', {'id': film.id}) }}" class="btn btn-danger">
+      <i class="glyphicon glyphicon-trash"></i>
+      Supprimer l'annonce
+    </a>
+  </p>
+
+{% endblock %}

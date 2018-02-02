@@ -1,8 +1,8 @@
 # app/config/routing.yml
 
-bg_platform:
-    resource: "@BGPlatformBundle/Resources/config/routing.yml"
-    prefix:   /platform
+bg_cinema:
+    resource: "@BGCinemaBundle/Resources/config/routing.yml"
+    prefix:   /cinema
 
 # On inclut également les routes de notre CoreBundle, sans préfixe
 bg_core:
@@ -27,9 +27,9 @@ fos_user_change_password:
     resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
     prefix: /profile
 
-bg_platform_paramconverter:
+bg_cinema_paramconverter:
     path: /test/{json}
     defaults:
-        _controller: "BGPlatformBundle:Advert:ParamConverter"
+        _controller: "BGCinemaBundle:Advert:ParamConverter"
 # fos_user:
 #     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
