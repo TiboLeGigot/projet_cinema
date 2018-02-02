@@ -3,7 +3,7 @@
 security:
     encoders:
         Symfony\Component\Security\Core\User\User: plaintext
-        OC\UserBundle\Entity\User: sha512
+        BG\UserBundle\Entity\User: sha512
 
     role_hierarchy:
         # Un admin hérite des droits USER, MODO & AUTHOR #

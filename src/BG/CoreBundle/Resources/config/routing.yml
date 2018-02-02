@@ -1,0 +1,11 @@
+# src/OC/CoreBundle/Resources/config/routing.yml
+
+bg_core_home:
+    path: /
+    defaults:
+        _controller: BGCoreBundle:Core:index
+
+bg_core_contact:
+    path: /contact
+    defaults:
+        _controller: BGCoreBundle:Core:contact

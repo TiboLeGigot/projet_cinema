@@ -2,7 +2,7 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: services.yml }
-    - { resource: "@OCUserBundle/Resources/config/services.yml" }
+    - { resource: "@BGUserBundle/Resources/config/services.yml" }
 
 # Put parameters here that don't need to change on each machine where the app is deployed
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
@@ -90,7 +90,7 @@ stof_doctrine_extensions:
 fos_user:
     db_driver:     orm #type de BDD = Doctrine
     firewall_name: main
-    user_class:    OC\UserBundle\Entity\User
+    user_class:    BG\UserBundle\Entity\User
     from_email:
         address:     "noreply@yourapp.com"
         sender_name: "Test"
