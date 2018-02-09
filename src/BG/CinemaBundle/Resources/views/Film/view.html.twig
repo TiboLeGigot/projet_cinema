@@ -1,7 +1,7 @@
 {% extends "BGCinemaBundle::layout.html.twig" %}
 
 {% block title %}
-  Lecture d'une annonce - {{ parent() }}
+  Lecture d'un film - {{ parent() }}
 {% endblock %}
 
 {% block bgcinema_body %}
@@ -26,23 +26,13 @@
 
   {% if not film.categories.empty %}
     <p>
-      Cette annonce est parue dans les catégories suivantes :
+      Ce film est paru dans les catégories suivantes :
       {% for category in film.categories %}
         {{ category.name }}{% if not loop.last %}, {% endif %}
       {% endfor %}
     </p>
   {% endif %}
 
-  {% if listFilmSkills|length > 0 %}
-    <div>
-      Cette annonce requiert les compétences suivantes :
-      <ul>
-        {% for filmSkill in listFilmSkills %}
-          <li>{{ filmSkill.skill.name }} : niveau {{ filmSkill.level }}</li>
-        {% endfor %}
-      </ul>
-    </div>
-  {% endif %}
 
   <p>
     <a href="{{ path('bg_cinema_home') }}" class="btn btn-default">
@@ -51,11 +41,11 @@
     </a>
     <a href="{{ path('bg_cinema_edit', {'id': film.id}) }}" class="btn btn-default">
       <i class="glyphicon glyphicon-edit"></i>
-      Modifier l'annonce
+      Modifier le film
     </a>
     <a href="{{ path('bg_cinema_delete', {'id': film.id}) }}" class="btn btn-danger">
       <i class="glyphicon glyphicon-trash"></i>
-      Supprimer l'annonce
+      Supprimer le film
     </a>
   </p>
 

@@ -1,68 +1,63 @@
-<h3>Ajouter un film</h3>
+<h3>Formulaire à remplir :</h3>
 
 <div class="well">
   {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
 
-  {# Les erreurs générales du formulaire. #}
-  {{ form_errors(form) }}
+    {# Les erreurs générales du formulaire. #}
+    {{ form_errors(form) }}
 
-  {# Génération du label + error + widget pour un champ. #}
-  {% if form.date is defined %}
-    {{ form_row(form.date) }}
-  {% endif %}
+    {# Génération du label + error + widget pour un champ. #}
+    {% if form.date is defined %}
+      {{ form_row(form.date) }}
+    {% endif %}
 
-  {# Génération manuelle et éclatée : #}
-  <div class="form-group">
-    {# Génération du label. #}
-    {{ form_label(form.title, "Titre de l'annonce", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+    <div class="form-group">
+      {{ form_label(form.title, "Titre du film", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
 
-    {# Affichage des erreurs pour ce champ précis. #}
-    {{ form_errors(form.title) }}
+      {# Affichage des erreurs pour ce champ précis. #}
+      {{ form_errors(form.title) }}
 
-    <div class="col-sm-10">
-      {# Génération de l'input. #}
-      {{ form_widget(form.title, {'attr': {'class': 'form-control'}}) }}
+      <div class="col-sm-10">
+        {# Génération de l'input. #}
+        {{ form_widget(form.title, {'attr': {'class': 'form-control'}}) }}
+      </div>
     </div>
-  </div>
 
-  {# Idem pour un autre champ. #}
-  <div class="form-group">
-    {{ form_label(form.content, "Contenu de l'annonce", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
-    {{ form_errors(form.title) }}
-    <div class="col-sm-10">
-      {{ form_widget(form.content, {'attr': {'class': 'form-control'}}) }}
+    {# Idem pour un autre champ. #}
+    <div class="form-group">
+
+      {{ form_label(form.content, "Description du film", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+      {{ form_errors(form.content) }}
+
+      <div class="col-sm-10">
+        {{ form_widget(form.content, {'attr': {'class': 'form-control'}}) }}
+      </div>
     </div>
-  </div>
 
-  {{ form_row(form.author) }}
+      {{ form_row(form.author) }}
 
-  {% if form.published is defined %}
-    {{ form_row(form.published) }}
-  {% endif %}
+      {% if form.published is defined %}
+        {{ form_row(form.published) }}
+      {% endif %}
 
-  {{ form_row(form.image) }}
+      {{ form_row(form.image) }}
 
-  {{ form_row(form.categories) }}
+      {{ form_row(form.categories) }}
 
-  {# Pour le bouton, pas de label ni d'erreur, on affiche juste le widget #}
-  {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary'}}) }}
+      {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary'}}) }}
 
-  {# Génération automatique des champs pas encore écrits.
-     Dans cet exemple, ce serait le champ CSRF (géré automatiquement par Symfony !)
-     et tous les champs cachés (type « hidden »). #}
-  {{ form_rest(form) }}
+      {# Génération automatique des champs CSRF et tous les champs cachés #}
+      {{ form_rest(form) }}
 
-  {# Fermeture de la balise <form> du formulaire HTML #}
-  {{ form_end(form) }}
+    {{ form_end(form) }}
 </div>
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-
-{# Voici le script en question : #}
+<!-- Scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script type="text/javascript">
   $(document).ready(function() {
     // On récupère la balise <div> en question qui contient l'attribut « data-prototype » qui nous intéresse.
-    var $container = $('div#film_categories');
+    var $container = $('div#bg_cinemabundle_film_categories');
 
     // On définit un compteur unique pour nommer les champs qu'on va ajouter dynamiquement
     var index = $container.find(':input').length;

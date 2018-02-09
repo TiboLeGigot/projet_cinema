@@ -1,24 +1,21 @@
 {% extends "BGCinemaBundle::layout.html.twig" %}
 
 {% block title %}
-  Modifier une annonce - {{ parent() }}
+  Modifier un film - {{ parent() }}
 {% endblock %}
 
 {% block bgcinema_body %}
 
-  <h2>Modifier une annonce</h2>
+  <h2>Modifier un film</h2>
+    <p>Vous éditez un film déjà existant, merci de ne pas changer l'esprit général.</p>
 
   {{ include("BGCinemaBundle:Film:form.html.twig") }}
 
-  <p>
-    Vous éditez une annonce déjà existante, merci de ne pas changer
-    l'esprit générale de l'annonce déjà publiée.
-  </p>
 
   <p>
-    <a href="{{ path('bg_cinema_view', {'id': film.id}) }}" class="btn btn-default">
+    <a href="{{ path('bg_cinema_view', {'film_id': film.id}) }}" class="btn btn-default">
       <i class="glyphicon glyphicon-chevron-left"></i>
-      Retour à l'annonce
+      Retour au film
     </a>
   </p>
 

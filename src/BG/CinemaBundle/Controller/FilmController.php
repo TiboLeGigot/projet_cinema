@@ -7,19 +7,16 @@ use BG\CinemaBundle\Form\FilmEditType;
 use BG\CinemaBundle\Form\FilmType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
-use Symfony\Component\HttpFoundation\Response;
 // use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class FilmController extends Controller
 {
   public function indexAction($page)
   {
-    if ($page < 1) {
-      throw new NotFoundHttpException('Page "'.$page.'" inexistante.');
-    }
 
     // Ici je fixe le nombre d'annonces par page à 3
     // Mais bien sûr il faudrait utiliser un paramètre, et y accéder via $this->container->getParameter('nb_per_page')
@@ -36,13 +33,13 @@ class FilmController extends Controller
     $nbPages = ceil(count($listFilms) / $nbPerPage);
 
     // Si la page n'existe pas, on retourne une 404
-    if ($page > $nbPages) {
+    if ($page > $nbPages && $page != 1) {
       throw $this->createNotFoundException("La page ".$page." n'existe pas.");
     }
 
     // On donne toutes les informations nécessaires à la vue
     return $this->render('BGCinemaBundle:Film:index.html.twig', array(
-      'listFilms' => $listFilms,
+      'listFilms'   => $listFilms,
       'nbPages'     => $nbPages,
       'page'        => $page,
     ));
@@ -58,7 +55,7 @@ class FilmController extends Controller
     $id = $film->getId();
 
     if (null === $film) {
-      throw new NotFoundHttpException("L'annonce d'id ".$id." n'existe pas.");
+      throw new NotFoundHttpException("Le film n° ".$id." n'existe pas.");
     }
 
     // Récupération de la liste des candidatures de l'annonce
@@ -74,9 +71,9 @@ class FilmController extends Controller
     ;
 
     return $this->render('BGCinemaBundle:Film:view.html.twig', array(
-      'film'           => $film,
+      'film'             => $film,
       'listApplications' => $listApplications,
-      'listFilmSkills' => $listFilmSkills,
+      'listFilmSkills'   => $listFilmSkills
     ));
   }
 
@@ -87,7 +84,8 @@ class FilmController extends Controller
   public function addAction(Request $request)
   {
     $film = new Film();
-    $form   = $this->get('form.factory')->create(FilmType::class, $film);
+    // $form = $this->get('form.factory')->create(FilmType::class, $film);
+    $form = $this->createForm(FilmType::class, $film);
 
     if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
       $em = $this->getDoctrine()->getManager();
@@ -96,7 +94,7 @@ class FilmController extends Controller
 
       $request->getSession()->getFlashBag()->add('notice', 'Annonce bien enregistrée.');
 
-      return $this->redirectToRoute('bg_cinema_view', array('id' => $film->getId()));
+      return $this->redirectToRoute('bg_cinema_view', ['film_id' => $film->getId()] );
     }
 
     return $this->render('BGCinemaBundle:Film:add.html.twig', array(
@@ -111,7 +109,7 @@ class FilmController extends Controller
     $film = $em->getRepository('BGCinemaBundle:Film')->find($id);
 
     if (null === $film) {
-      throw new NotFoundHttpException("L'annonce d'id ".$id." n'existe pas.");
+      throw new NotFoundHttpException("Le film n° ".$id." n'existe pas.");
     }
 
     $form = $this->get('form.factory')->create(FilmEditType::class, $film);
@@ -122,7 +120,7 @@ class FilmController extends Controller
 
       $request->getSession()->getFlashBag()->add('notice', 'Annonce bien modifiée.');
 
-      return $this->redirectToRoute('bg_cinema_view', array('id' => $film->getId()));
+      return $this->redirectToRoute('bg_cinema_view', ['film_id' => $film->getId()] ) ;
     }
 
     return $this->render('BGCinemaBundle:Film:edit.html.twig', array(
@@ -138,7 +136,7 @@ class FilmController extends Controller
     $film = $em->getRepository('BGCinemaBundle:Film')->find($id);
 
     if (null === $film) {
-      throw new NotFoundHttpException("L'annonce d'id ".$id." n'existe pas.");
+      throw new NotFoundHttpException("Le film n° ".$id." n'existe pas.");
     }
 
     // On crée un formulaire vide, qui ne contiendra que le champ CSRF

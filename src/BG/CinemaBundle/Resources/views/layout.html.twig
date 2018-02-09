@@ -1,19 +1,135 @@
-{% extends "BGCoreBundle::layout.html.twig" %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-{% block title %}
-  Annonces - {{ parent() }}
-{% endblock %}
+    <title>
+      {% block title %}
+        Cinéma Bonne Garde - Cinéma associatif à Nantes, Films Art et Essai
+      {% endblock %}
+    </title>
 
-{% block body %}
+    <!-- CSS Vendor-->
+    {% block stylesheets %}
+      <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+      <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    {% endblock %}
 
-  {# On définit un sous-titre commun à toutes les pages du bundle, par exemple #}
-  <h1>Films</h1>
+    {% stylesheets 'bundles/bgcinema/css/main.css' %}
+      <link rel="stylesheet" href="{{ asset_url }}">
+    {% endstylesheets %}
+  </head>
 
-  <hr>
+  <body>
+    {% block body %}
 
-  {# On définit un nouveau bloc, que les vues du bundle pourront remplir #}
-  {% block bgcinema_body %}
+    <a href="{{ path('bg_cinema_home') }}">
+      <header>
+          <h1>
+            <span class="blue">Cinéma</span>
+            <span>Bonne</span>
+            <span>Garde</span>
+          </h1>
+        <p>Cinéma associatif à Nantes, films art et essai</p>
+      </header>
+    </a>
 
-  {% endblock bgcinema_body %}
+      <main>
+        <nav>
+          <ul class="navbar-nav mr-auto" id="menu-top">
+            <li class="nav-item active">
+              <a class="nav-link" href="{{ path('bg_cinema_home') }}"><i class="fas fa-home"></i> Accueil </a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="{{ path('bg_cinema_home') }}"><i class="far fa-calendar-alt"></i> Programme</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="{{ path('bg_cinema_home') }}"><i class="fas fa-bullhorn"></i> Évenements</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="{{ path('bg_cinema_home') }}"><i class="fas fa-child"></i> Jeune Public</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="{{ path('bg_cinema_home') }}"><i class="fas fa-car"></i> Pratique</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="{{ path('bg_cinema_home') }}"><i class="fas fa-info-circle"></i> A propos</a>
+            </li>
+          </ul>
+        </nav>
+                {% if is_granted('ROLE_ADMIN') %}
+          <a href="{{ path('bg_cinema_add') }}"><i class="far fa-plus-square"></i> Ajouter un film</a>
+        {% endif %}
 
-{% endblock %}
+        <div id="connect">
+          {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+              Connecté en tant que {{ app.user.username }}
+              -
+              <a href="{{ path('fos_user_security_logout') }}"><button type="button" class="btn btn-danger">Déconnexion</button></a>
+          {% else %}
+              <a href="{{ path('fos_user_security_login') }}"><button type="button" class="btn btn-primary">Connexion</button></a>
+          {% endif %}
+        </div>
+
+        {% block bgcinema_body %}
+        {% endblock bgcinema_body %}
+
+        </main>
+
+        <hr>
+
+        <footer>
+          <section class="liens">
+            <div class="footer1">
+              {% image '@BGCinemaBundle/Resources/public/img/Devanture.jpg' %}
+                <img src="{{ asset_url }}" alt="Entrée du cinéma">
+              {% endimage %}
+              <p>20 Rue Frère Louis</p>
+              <p>44200 Nantes</p>
+              <p>02.51.90.37.21</p>
+              {% image '@BGCinemaBundle/Resources/public/img/acces.jpg' %}
+                <img src="{{ asset_url }}" alt="Accessibilité handicapés et parking">
+              {% endimage %}
+            </div>
+
+            <div class="footer2">
+              <h4>LIENS UTILES</h4>
+              <a href="http://www.cinemalebonnegarde.com/programmation/">Programmation</a>
+              <a href="https://www.facebook.com/cinema.bonnegarde/?fref=ts">Retrouvez le cinéma sur Facebook</a>
+              <a href="http://www.ascbg.org/">L’ASC Bonne-Garde</a>
+              <a href="http://www.cinemalebonnegarde.com/wp-content/uploads/2016/10/R%C3%A8glement-Jeu-concours-Facebook-Cin%C3%A9ma-Bonne-Garde.pdf">Règlement jeu concours Facebook</a>
+            </div>
+
+            <div class="footer3">
+              <h4>EVENEMENTS</h4>
+              <a href="http://www.cinemalebonnegarde.com/cine-debats/">Ciné-débats</a>
+              <a href="http://www.cinemalebonnegarde.com/cycle-americain">Cycle Américain</a>
+              <a href="http://www.cinemalebonnegarde.com/autres-evenenements/">Autres évenements</a>
+              <a href="http://www.cinemalebonnegarde.com/jeune-public/">Jeune public</a>
+              <a href="http://www.cinemalebonnegarde.com/?page_id=5966">Séances sourds et malentendants</a>
+            </div>
+
+            <div class="footer4">
+              <h4>LETTRE D'INFORMATIONS</h4>
+              <p>Lorem ipsum dolor sit amet, tempore blanditiis. Vitae quo animi, ullam, maxime odit magnam. Fuga sequi, ipsa necessitatibus dolore a? Sequi, quod.</p>
+              <p>Lorem ipsum dolor sit amet, tempore blanditiis. Vitae quo animi, ullam, maxime odit magnam. Fuga sequi, ipsa necessitatibus dolore a? Sequi, quod.</p>
+              <p>Truc pour s'abonner</p>
+            </div>
+          </section>
+          <hr>
+          <p>Cinéma Bonne Garde © {{ 'now'|date('Y') }}.</p>
+        </footer>
+
+      <!-- Javascript -->
+      {% javascripts filter='jsqueeze' %}
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+        <script src="https://cdn.ckeditor.com/4.8.0/standard/ckeditor.js"></script>
+        <script src="https://cdn.ckeditor.com/ckeditor5/1.0.0-alpha.2/classic/ckeditor.js"></script>
+      {% endjavascripts %}
+    {% endblock %}
+  </body>
+</html>

@@ -1,22 +1,22 @@
 {% extends "BGCinemaBundle::layout.html.twig" %}
 
 {% block title %}
-  Supprimer une annonce - {{ parent() }}
+  Supprimer un film - {{ parent() }}
 {% endblock %}
 
 {% block bgcinema_body %}
 
-  <h2>Supprimer une annonce</h2>
+  <h2>Supprimer un film</h2>
 
   <p>
-    Etes-vous certain de vouloir supprimer l'annonce "{{ film.title }}" ?
+    Etes-vous certain de vouloir supprimer le film "{{ film.title }}" ?
   </p>
 
-  {# On met l'id de l'annonce dans la route de l'action du formulaire #}
+  {# On met l'id de l'film dans la route de l'action du formulaire #}
   <form action="{{ path('bg_cinema_delete', {'id': film.id}) }}" method="post">
-    <a href="{{ path('bg_cinema_view', {'id': film.id}) }}" class="btn btn-default">
+    <a href="{{ path('bg_cinema_view', {'film_id': film.id}) }}" class="btn btn-default">
       <i class="glyphicon glyphicon-chevron-left"></i>
-      Retour à l'annonce
+      Retour au film
     </a>
     {# Ici j'ai écrit le bouton de soumission à la main #}
     <input type="submit" value="Supprimer" class="btn btn-danger" />

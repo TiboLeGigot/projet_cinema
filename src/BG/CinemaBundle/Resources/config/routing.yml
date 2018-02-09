@@ -1,10 +1,8 @@
 bg_cinema_home:
-    path:      /{page}
+    path:      /
     defaults:
         _controller: BGCinemaBundle:Film:index
-        page:        1
-    requirements:
-        page: \d*
+        page : 1
 
 bg_cinema_view:
     path:      /film/{film_id}

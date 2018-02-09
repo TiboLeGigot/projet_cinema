@@ -1,14 +1,13 @@
 {% extends "BGCinemaBundle::layout.html.twig" %}
 
-{% block body %}
+{% block bgcinema_body %}
 
-  <h2>Ajouter une annonce</h2>
+  <h2>Ajouter un film</h2>
+    <p>
+      Attention : ce film sera ajouté directement
+      sur la page d'accueil après validation du formulaire.
+    </p>
 
-  {{ include("BGCinemaBundle:Film:form.html.twig") }}
+    {{ include("BGCinemaBundle:Film:form.html.twig") }}
 
-  <p>
-    Attention : cette annonce sera ajoutée directement
-    sur la page d'accueil après validation du formulaire.
-  </p>
-
-{% endblock %}
+{% endblock bgcinema_body %}

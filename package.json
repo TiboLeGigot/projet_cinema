@@ -1,0 +1,23 @@
+{
+  "name": "projet_cinema",
+  "version": "1.0.0",
+  "description": "Salut",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TiboLeGigot/projet_cinema.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TiboLeGigot/projet_cinema/issues"
+  },
+  "homepage": "https://github.com/TiboLeGigot/projet_cinema#readme",
+  "dependencies": {}
+}

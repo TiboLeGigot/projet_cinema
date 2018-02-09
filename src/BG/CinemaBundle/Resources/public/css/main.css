@@ -1,0 +1,111 @@
+/* FONT FACE */
+
+/* Root */
+
+:root {
+  --blanc: #FEFEFF;
+  --bleu: #02A1C8;
+}
+
+
+/* GLOBAL */
+* {
+  box-sizing: border-box;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 0 10%;
+}
+
+hr {
+  color: var(--blanc);
+}
+
+/* HEADER */
+
+header {
+  background-image: url('https://www.cinemaseatingturkey.com/wp-content/uploads/2017/01/Cinema-Chair.jpg');
+  background-size: contain;
+  color: var(--blanc);
+}
+
+header, h1 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1 {
+  padding: 0.8em;
+  border: solid 2px red;
+  background-color: rgba(0, 0, 0, 0.2);
+  color: var(--blanc);
+}
+
+h1 span {
+  margin: 5%;
+}
+
+.blue {
+  color: var(--bleu);
+}
+
+/* MAIN */
+
+#connect {
+  display: flex;
+  justify-content: flex-end;
+}
+
+#menu-top {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+#form-login {
+  display: flex;
+  flex-direction: column;
+}
+
+/* FOOTER */
+
+footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-clip: border-box;
+  background-color: #000;
+  color: var(--blanc);
+  padding: 0 10%;
+}
+
+.liens {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer1, .footer2, .footer3, .footer4 {
+  margin-top: 2em ;
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+}
+
+.footer1 a, .footer2 a, .footer3 a, .footer4 a {
+  margin-bottom: 1em;
+}
+
+/* Media Queries */
+
+@media screen and (min-width: 1024px) {
+  .liens {
+    display: grid;
+    grid-gap: 2em;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+
+}
