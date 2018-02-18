@@ -36,3 +36,33 @@ bg_cinema_purge:
         _controller: BGCinemaBundle:Film:purge
     requirements:
         days: \d+
+
+bg_cinema_debats:
+    path: /cine-debat
+    defaults:
+        _controller: BGCinemaBundle:Film:debats
+
+bg_cinema_americain:
+    path: /cycle-americain
+    defaults:
+        _controller: BGCinemaBundle:Film:americain
+
+bg_cinema_evenements:
+    path: /autres-evenements
+    defaults:
+        _controller: BGCinemaBundle:Film:evenements
+
+bg_cinema_jeunepublic:
+    path: /jeune-public
+    defaults:
+        _controller: BGCinemaBundle:Film:jeunepublic
+
+bg_cinema_apropos:
+    path: /à-propos
+    defaults:
+        _controller: BGCinemaBundle:Film:apropos
+
+bg_cinema_pratique:
+    path: /pratique
+    defaults:
+        _controller: BGCinemaBundle:Film:pratique

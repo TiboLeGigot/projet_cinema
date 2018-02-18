@@ -11,38 +11,31 @@ security:
         ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
 
     providers:
-        main:
-            id: fos_user.user_provider.username
-
         in_memory:
           memory:
             users:
               user:   { password: userpass, roles: [ 'ROLE_USER' ] }
               admin:  { password: adminpass, roles: [ 'ROLE_ADMIN' ] }
 
-        chain_provider:
-            chain:
-                providers: [main, in_memory]
-
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
-        main_login:
-            pattern: ^/login$
-            anonymous: true
-        main:
-            pattern:   ^/
-            anonymous: true
-            provider:  chain_provider
-            form_login:
-                login_path: fos_user_security_login
-                check_path: fos_user_security_check
-            logout:
-                path:   fos_user_security_logout
-                target: fos_user_security_login
-            remember_me:
-                secret: %secret%
+        # main_login:
+        #     pattern: ^/login$
+        #     anonymous: true
+        # main:
+        #     pattern:   ^/
+        #     anonymous: true
+        #     provider:  chain_provider
+        #     form_login:
+        #         login_path: fos_user_security_login
+        #         check_path: fos_user_security_check
+        #     logout:
+        #         path:   fos_user_security_logout
+        #         target: fos_user_security_login
+        #     remember_me:
+        #         secret: %secret%
 
     access_control:
         - { path: ^/login$, roles: IS_AUTHENTICATED_ANONYMOUSLY }

@@ -74,19 +74,9 @@ class Film
   private $categories;
 
   /**
-   * @ORM\OneToMany(targetEntity="BG\CinemaBundle\Entity\Application", mappedBy="film")
-   */
-  private $applications; // Notez le « s », une annonce est liée à plusieurs candidatures
-
-  /**
    * @ORM\Column(name="updated_at", type="datetime", nullable=true)
    */
   private $updatedAt;
-
-  /**
-   * @ORM\Column(name="nb_applications", type="integer")
-   */
-  private $nbApplications = 0;
 
   /**
    * @Gedmo\Slug(fields={"title"})
@@ -98,7 +88,6 @@ class Film
   {
     $this->date         = new \Datetime();
     $this->categories   = new ArrayCollection();
-    $this->applications = new ArrayCollection();
   }
 
   /**
@@ -107,16 +96,6 @@ class Film
   public function updateDate()
   {
     $this->setUpdatedAt(new \Datetime());
-  }
-
-  public function increaseApplication()
-  {
-    $this->nbApplications++;
-  }
-
-  public function decreaseApplication()
-  {
-    $this->nbApplications--;
   }
 
   /**
@@ -242,33 +221,6 @@ class Film
   }
 
   /**
-   * @param Application $application
-   */
-  public function addApplication(Application $application)
-  {
-    $this->applications[] = $application;
-
-    // On lie l'annonce à la candidature
-    $application->setFilm($this);
-  }
-
-  /**
-   * @param Application $application
-   */
-  public function removeApplication(Application $application)
-  {
-    $this->applications->removeElement($application);
-  }
-
-  /**
-   * @return \Doctrine\Common\Collections\Collection
-   */
-  public function getApplications()
-  {
-    return $this->applications;
-  }
-
-  /**
    * @param \DateTime $updatedAt
    */
   public function setUpdatedAt(\Datetime $updatedAt = null)
@@ -282,22 +234,6 @@ class Film
   public function getUpdatedAt()
   {
       return $this->updatedAt;
-  }
-
-  /**
-   * @param integer $nbApplications
-   */
-  public function setNbApplications($nbApplications)
-  {
-      $this->nbApplications = $nbApplications;
-  }
-
-  /**
-   * @return integer
-   */
-  public function getNbApplications()
-  {
-      return $this->nbApplications;
   }
 
   /**

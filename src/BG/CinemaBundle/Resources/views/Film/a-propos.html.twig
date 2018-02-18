@@ -1,0 +1,44 @@
+{% extends "BGCinemaBundle::layout.html.twig" %}
+
+{% block title %}
+  A propos - {{ parent() }}
+{% endblock %}
+
+{% block h2 %}
+  <h2>À propos</h2>
+{% endblock %}
+
+{% block bgcinema_body %}
+  <article class="a-propos">
+
+  <p>
+    Le cinéma Bonne Garde est membre de l’<a href="http://www.ascbg.org/">ASC Bonne-Garde</a>. Créé en 1927, le <strong>Cinéma Bonne Garde</strong> est le dernier cinéma réellement associatif de Nantes.
+  </p>
+
+  <p>
+    Cinéma classé « Art et Essai » depuis 1983, il remplit sa mission de diffusion de films de qualité et répondant aux exigences de ce label mais programme également de grands succès populaires.
+  </p>
+
+  <p>
+    Labellisé « Jeune Public », il s’est fait un 2ème axe de spécialité en amenant les enfants, dès le plus jeune âge,
+    à découvrir autrement l’image animée et l’art cinématographique. Il organise à cet effet des festivals et des temps dédiés à ces jeunes
+    publics (Festimômes, Ciné P’tit mômes, etc.), accompagnés soit de leur famille, soit des enseignants sur temps scolaire (école et cinéma, collège et cinéma, etc.)
+  </p>
+
+  <p>
+    Dans le cadre de partenariats avec divers partenaires (l’Université Permanente, Nantes-Histoire ou la Région Pays de la Loire), le <strong>Cinéma Bonne Garde</strong> joue un rôle de transmission de la mémoire, de valorisation du patrimoine cinématographique et de diffusion des savoirs.
+  </p>
+
+  <p>
+    Comme toutes les activités de l’ASC Bonne Garde, le cinéma fonctionne en grande partie grâce à de nombreux bénévoles qui prennent en charge tout ce qu’implique
+    le fonctionnement d’une salle de cinéma (programmation, animation, affiches, accueil des spectateurs, billetterie, gestion et évidemment projection).
+    N’hésitez pas à nous contacter si vous souhaitez rejoindre le cinéma en tant que bénévole.
+  </p>
+
+  {% image '@BGCinemaBundle/Resources/public/img/salle-cine.jpg' %}
+  <img src="{{ asset_url }}" alt="salle de cinéma">
+  {% endimage %}
+</article>
+
+
+{% endblock bgcinema_body %}

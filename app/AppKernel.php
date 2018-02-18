@@ -7,7 +7,7 @@ class AppKernel extends Kernel
 {
     public function registerBundles()
     {
-        $bundles = array(
+        $bundles = [
             new Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
             new Symfony\Bundle\SecurityBundle\SecurityBundle(),
             new Symfony\Bundle\TwigBundle\TwigBundle(),
@@ -18,11 +18,15 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
             new BG\CinemaBundle\BGCinemaBundle(),
-            new BG\UserBundle\BGUserBundle(),
-            new FOS\UserBundle\FOSUserBundle(),
-        );
+            // new BG\UserBundle\BGUserBundle(),
+            // new FOS\UserBundle\FOSUserBundle(),
+            new Sonata\CoreBundle\SonataCoreBundle(),
+            new Sonata\BlockBundle\SonataBlockBundle(),
+            new Sonata\AdminBundle\SonataAdminBundle(),
+            new Knp\Bundle\MenuBundle\KnpMenuBundle(),
+        ];
 
-        if (in_array($this->getEnvironment(), array('dev', 'test'), true)) {
+        if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
             $bundles[] = new Symfony\Bundle\DebugBundle\DebugBundle();
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
             $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();

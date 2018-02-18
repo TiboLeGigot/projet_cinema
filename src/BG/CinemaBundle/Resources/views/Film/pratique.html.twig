@@ -1,0 +1,52 @@
+{% extends "BGCinemaBundle::layout.html.twig" %}
+
+{% block title %}
+  Pratique - {{ parent() }}
+{% endblock %}
+
+{% block h2 %}
+  <h2>Pratique</h2>
+{% endblock %}
+
+{% block bgcinema_body %}
+  <section id="tarifs">
+    <h3>Tarifs</h3>
+
+    <table class="table table-sm">
+      <tbody>
+        <tr>
+          <td>Tarif normal</td>
+          <td>5€</td>
+        </tr>
+        <tr>
+          <td>Tarif Réduit</td>
+          <td>4,5€ (sur présentation d'un justificatif : demandeurs d'emploi, + de 60 ans, - de 18 ans, étudiants, carte Cezam, Car’S*, PassTime, AEZNER, Université Permanente, carte ASCBG, ...)</td>
+        </tr>
+        <tr>
+          <td>Carte blanche</td>
+          <td>3€ (Carte délivrée par la ville de Nantes)</td>
+        </tr>
+        <tr>
+          <td>Moins de 14 ans</td>
+          <td>4€</td>
+        </tr>
+        <tr>
+          <td>Carte 10 séances</td>
+          <td>40€</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section id="se-rendre">
+    <h3>Se rendre au cinéma</h3>
+    <ul>
+      <li><strong>En Tramway :</strong> en 15mn depuis la Place du Commerce Ligne 2 (direction Pont-Rousseau) ou Ligne 3 (direction Neustrie), arrêt Pirmil.</li>
+      <li><strong>En Busway :</strong> en 10mn depuis le centre de Nantes, arrêt Bonne Garde</li>
+      <li><strong>En Bus :</strong> Ligne 42 Arrêt St Jacques</li>
+      <li><strong>En Bicloo :</strong> Station 99 St Jacques & 101 Pirmil</li>
+      <li><strong>En Voiture :</strong> grand parking gratuit (Parking de Pirmil) à 200m du cinéma Bonne Garde,</li>
+    </ul>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1355.5505630791895!2d-1.5387384563911988!3d47.195033176395874!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4805e9481e18530d%3A0x321435b9701084a8!2sAssociation+Sportive+Culturelle+Bonne+Garde!5e0!3m2!1sfr!2sfr!4v1518881979129" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+  </section>
+{% endblock bgcinema_body %}

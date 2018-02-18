@@ -6,7 +6,12 @@
 
 {% block bgcinema_body %}
 
-  <h2>Liste des films</h2>
+  {% image '@BGCinemaBundle/Resources/public/img/Prog.jpg' %}
+    <img id="programmation" src="{{ asset_url }}" alt="Programmation">
+  {% endimage %}
+
+
+  <h2>Films de la semaine</h2>
 
   <ul>
     {% for film in listFilms %}

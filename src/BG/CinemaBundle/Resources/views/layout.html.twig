@@ -24,6 +24,23 @@
 
   <body>
     {% block body %}
+    <div id="top-header">
+
+      {% image '@BGCinemaBundle/Resources/public/img/logo.png' %}
+        <img src="{{ asset_url }}" alt="Logo du cinéma">
+      {% endimage %}
+
+      <nav id="menu-top">
+
+        <a class="navicons" href="{{ path('bg_cinema_home') }}"><i class="fas fa-home"></i> Accueil </a>
+
+        <a class="navicons" href="{{ path('bg_cinema_home') }}"><i class="far fa-calendar-alt"></i> Programme</a>
+        <a class="navicons" href="{{ path('bg_cinema_home') }}"><i class="fas fa-bullhorn"></i> Évenements</a>
+        <a class="navicons" href="{{ path('bg_cinema_home') }}"><i class="fas fa-child"></i> Jeune Public</a>
+        <a class="navicons" href="{{ path('bg_cinema_pratique') }}"><i class="fas fa-car"></i> Pratique</a>
+        <a class="navicons" href="{{ path('bg_cinema_apropos') }}"><i class="fas fa-info-circle"></i> A propos</a>
+      </nav>
+    </div>
 
     <a href="{{ path('bg_cinema_home') }}">
       <header>
@@ -32,46 +49,19 @@
             <span>Bonne</span>
             <span>Garde</span>
           </h1>
-        <p>Cinéma associatif à Nantes, films art et essai</p>
+
+          <p>Cinéma associatif à Nantes, films art et essai</p>
+
+        {% block h2 %}
+        {% endblock %}
       </header>
     </a>
 
       <main>
-        <nav>
-          <ul class="navbar-nav mr-auto" id="menu-top">
-            <li class="nav-item active">
-              <a class="nav-link" href="{{ path('bg_cinema_home') }}"><i class="fas fa-home"></i> Accueil </a>
-            </li>
-            <li class="nav-item active">
-              <a class="nav-link" href="{{ path('bg_cinema_home') }}"><i class="far fa-calendar-alt"></i> Programme</a>
-            </li>
-            <li class="nav-item active">
-              <a class="nav-link" href="{{ path('bg_cinema_home') }}"><i class="fas fa-bullhorn"></i> Évenements</a>
-            </li>
-            <li class="nav-item active">
-              <a class="nav-link" href="{{ path('bg_cinema_home') }}"><i class="fas fa-child"></i> Jeune Public</a>
-            </li>
-            <li class="nav-item active">
-              <a class="nav-link" href="{{ path('bg_cinema_home') }}"><i class="fas fa-car"></i> Pratique</a>
-            </li>
-            <li class="nav-item active">
-              <a class="nav-link" href="{{ path('bg_cinema_home') }}"><i class="fas fa-info-circle"></i> A propos</a>
-            </li>
-          </ul>
-        </nav>
-                {% if is_granted('ROLE_ADMIN') %}
+        {% if is_granted('ROLE_ADMIN') %}
           <a href="{{ path('bg_cinema_add') }}"><i class="far fa-plus-square"></i> Ajouter un film</a>
         {% endif %}
 
-        <div id="connect">
-          {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-              Connecté en tant que {{ app.user.username }}
-              -
-              <a href="{{ path('fos_user_security_logout') }}"><button type="button" class="btn btn-danger">Déconnexion</button></a>
-          {% else %}
-              <a href="{{ path('fos_user_security_login') }}"><button type="button" class="btn btn-primary">Connexion</button></a>
-          {% endif %}
-        </div>
 
         {% block bgcinema_body %}
         {% endblock bgcinema_body %}
@@ -104,10 +94,10 @@
 
             <div class="footer3">
               <h4>EVENEMENTS</h4>
-              <a href="http://www.cinemalebonnegarde.com/cine-debats/">Ciné-débats</a>
-              <a href="http://www.cinemalebonnegarde.com/cycle-americain">Cycle Américain</a>
-              <a href="http://www.cinemalebonnegarde.com/autres-evenenements/">Autres évenements</a>
-              <a href="http://www.cinemalebonnegarde.com/jeune-public/">Jeune public</a>
+              <a href="{{ path('bg_cinema_debats') }}">Ciné-débats</a>
+              <a href="{{ path('bg_cinema_americain') }}">Cycle Américain</a>
+              <a href="{{ path('bg_cinema_evenements') }}">Autres évenements</a>
+              <a href="{{ path('bg_cinema_jeunepublic') }}">Jeune public</a>
               <a href="http://www.cinemalebonnegarde.com/?page_id=5966">Séances sourds et malentendants</a>
             </div>
 

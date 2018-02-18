@@ -59,21 +59,19 @@ class FilmController extends Controller
     }
 
     // Récupération de la liste des candidatures de l'annonce
-    $listApplications = $em
-      ->getRepository('BGCinemaBundle:Application')
-      ->findBy(array('film' => $film))
-    ;
+    // $listApplications = $em
+    //   ->getRepository('BGCinemaBundle:Application')
+    //   ->findBy(array('film' => $film))
+    // ;
 
     // Récupération des FilmSkill de l'annonce
-    $listFilmSkills = $em
-      ->getRepository('BGCinemaBundle:FilmSkill')
-      ->findBy(array('film' => $film))
-    ;
+    // $listFilmSkills = $em
+    //   ->getRepository('BGCinemaBundle:FilmSkill')
+    //   ->findBy(array('film' => $film))
+    // ;
 
     return $this->render('BGCinemaBundle:Film:view.html.twig', array(
-      'film'             => $film,
-      'listApplications' => $listApplications,
-      'listFilmSkills'   => $listFilmSkills
+      'film'             => $film
     ));
   }
 
@@ -214,4 +212,35 @@ class FilmController extends Controller
   {
     return new Response(print_r($json, true));
   }
+
+  public function debatsAction()
+  {
+    return $this->render('BGCinemaBundle:Film:debats.html.twig', []);
+  }
+
+  public function americainAction()
+  {
+    return $this->render('BGCinemaBundle:Film:americain.html.twig', []);
+  }
+
+  public function evenementsAction()
+  {
+    return $this->render('BGCinemaBundle:Film:evenements.html.twig', []);
+  }
+
+  public function jeunepublicAction()
+  {
+    return $this->render('BGCinemaBundle:Film:jeune-public.html.twig', []);
+  }
+
+  public function aproposAction()
+  {
+    return $this->render('BGCinemaBundle:Film:a-propos.html.twig', []);
+  }
+
+  public function pratiqueAction()
+  {
+    return $this->render('BGCinemaBundle:Film:pratique.html.twig', []);
+  }
+
 }

@@ -1,58 +1,60 @@
 services:
-  bg_cinema.antispam:
-      class: BG\CinemaBundle\Antispam\BGAntispam
-      arguments:
+    bg_cinema.antispam:
+        class: BG\CinemaBundle\Antispam\BGAntispam
+        arguments:
           - "@mailer"
           - %locale%
           - 50
 
-  bg_cinema.email.application_mailer:
-      class: BG\CinemaBundle\Email\ApplicationMailer
-      arguments:
-          - "@mailer"
+    bg_cinema.email.application_mailer:
+        class: BG\CinemaBundle\Email\ApplicationMailer
+        arguments:
+            - "@mailer"
 
-  bg_cinema.doctrine_listener.application_creation:
-    class: BG\CinemaBundle\DoctrineListener\ApplicationCreationListener
-    arguments:
-      - "@bg_cinema.email.application_mailer"
-    tags:
-      - { name: doctrine.event_listener, event: postPersist }
+    bg_cinema.doctrine_listener.application_creation:
+        class: BG\CinemaBundle\DoctrineListener\ApplicationCreationListener
+        arguments:
+            - "@bg_cinema.email.application_mailer"
+        tags:
+            - { name: doctrine.event_listener, event: postPersist }
 
-  bg_cinema.purger.film:
-    class: BG\CinemaBundle\Purger\FilmPurger
-    arguments:
-      - "@doctrine.orm.entity_manager"
+    bg_cinema.purger.film:
+        class: BG\CinemaBundle\Purger\FilmPurger
+        arguments:
+            - "@doctrine.orm.entity_manager"
 
-  bg_cinema.validator.antiflood:
-    class: BG\CinemaBundle\Validator\AntifloodValidator
-    arguments: ["@request_stack", "@doctrine.orm.entity_manager"] # les données qu'on injecte au service : la requete et l'EntityManager
-    tags:
-      - { name: validator.constraint_validator, alias: bg_cinema_antiflood } # C'est avec cet alias qu'on retrouvera le service
+    bg_cinema.validator.antiflood:
+        class: BG\CinemaBundle\Validator\AntifloodValidator
+        arguments: ["@request_stack", "@doctrine.orm.entity_manager"] # les données qu'on injecte au service : la requete et l'EntityManager
+        tags:
+            - { name: validator.constraint_validator, alias: bg_cinema_antiflood } # C'est avec cet alias qu'on retrouvera le service
 
-  bg_cinema.twig.antispam_extension:
-    class: BG\CinemaBundle\Twig\AntispamExtension
-    arguments:
-      - "@bg_cinema.antispam"
-    tags:
-      - { name: twig.extension }
+    bg_cinema.twig.antispam_extension:
+        class: BG\CinemaBundle\Twig\AntispamExtension
+        arguments:
+            - "@bg_cinema.antispam"
+        tags:
+            - { name: twig.extension }
 
-  bg_cinema.form.ckeditor:
-    class: BG\CinemaBundle\Form\CkeditorType
-    tags:
-      - { name: form.type, alias: ckeditor }
+    bg_cinema.form.ckeditor:
+        class: BG\CinemaBundle\Form\CkeditorType
+        tags:
+            - { name: form.type, alias: ckeditor }
 
-  bg_cinema.beta.html_adder:
-    class: BG\CinemaBundle\Beta\BetaHTMLAdder
+    # admin.category:
+    #     class: AppBundle\Admin\CategoryAdmin
+    #     arguments: [~, AppBundle\Entity\Category, ~]
+    #     tags:
+    #         - { name: sonata.admin, manager_type: orm, label: Category }
+    #     public: true
 
-  bg_cinema.beta.listener:
-    class: BG\CinemaBundle\Beta\BetaListener
-    arguments:
-      - "@bg_cinema.beta.html_adder"
-      - "2018-02-15"
-    tags:
-      - { name: kernel.event_listener, event: kernel.response, method: processBeta }
-
-    bg_cinema.paramconverter.json:
-      class:  BG\CinemaBundle\ParamConverter\JsonParamConverter
-      tags:
-        - { name: request.param_converter }
+    # bg_cinema.beta.html_adder:
+    #     class: BG\CinemaBundle\Beta\BetaHTMLAdder
+    #
+    # bg_cinema.beta.listener:
+    #     class: BG\CinemaBundle\Beta\BetaListener
+    #     arguments:
+    #         - "@bg_cinema.beta.html_adder"
+    #         - "2018-02-15"
+    #     tags:
+    #         - { name: kernel.event_listener, event: kernel.response, method: processBeta }
